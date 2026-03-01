@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suites | Finca Serenity</title>
+    <link rel="stylesheet" href="site/styles.css">
+    <style>
+        .suite-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 350px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        .suite-hero .bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .suite-hero .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+        }
+        .suite-hero .content {
+            position: relative;
+            z-index: 2;
+            padding: 2.5rem 3rem;
+        }
+        .suite-hero h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--white-90);
+        }
+        .suite-info {
+            background: var(--bg-paper);
+            padding: 3.5rem 3rem;
+        }
+        .suite-info .inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .suite-info .suite-specs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .suite-spec {
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 2px;
+        }
+        .suite-info p {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            line-height: 2;
+        }
+        .floorplan-section {
+            background: var(--bg-paper);
+            padding: 5rem 3rem;
+            text-align: center;
+        }
+        .floorplan-section img {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <a href="home.html" class="nav-brand">Finca Serenity</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="estate.html">The Estate</a></li>
+        <li><a href="suites.html" class="active">Suites</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="enquire.html">Enquire</a></li>
+    </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-full">
+    <div class="bg" style="background-image: url('Photos/Confirmed/En-Suite.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content">
+        <p class="tagline" style="margin-bottom: 0.8rem;">Accommodation</p>
+        <h1>The Suites</h1>
+    </div>
+    <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="arrow"></div>
+    </div>
+</section>
+
+<!-- Intro -->
+<section class="section section-pad-lg">
+    <div class="container reveal" style="max-width: 700px; text-align: center;">
+        <p class="chapter-label">Seven bedrooms, four distinct homes</p>
+        <h2 class="section-title">Each with its own character</h2>
+        <p class="section-text" style="max-width: 100%; margin: 0 auto;">
+            Finca Serenity sleeps up to 14 guests across four separate living spaces—from the main house
+            to the treetop suite. Every room is en-suite, every space is private, and every morning
+            starts with a different view.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════ THE MAIN HOUSE ═══════════ -->
+<div class="suite-hero">
+    <div class="bg" style="background-image: url('Photos/Confirmed/Suites.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content"><h2>The Main House</h2></div>
+</div>
+<div class="suite-info">
+    <div class="inner reveal">
+        <div class="suite-specs">
+            <span class="suite-spec">3 En-suite Bedrooms</span>
+            <span class="suite-spec">Master Terrace</span>
+            <span class="suite-spec">Main Floor</span>
+        </div>
+        <p>
+            Three en-suite bedrooms, including the master suite on the upper terrace.
+            High beamed ceilings, cool stone floors, and French doors that open to the
+            sound of the cicadas.
+        </p>
+        <p style="margin-top: 1rem;">
+            A place of quiet retreat, where the thickness of the walls keeps the midday heat at bay.
+        </p>
+    </div>
+</div>
+
+<!-- ═══════════ THE APARTMENT ═══════════ -->
+<div class="suite-hero">
+    <div class="bg" style="background-image: url('Photos/Confirmed/Apartment Living Area.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content"><h2>The Apartment</h2></div>
+</div>
+<div class="suite-info">
+    <div class="inner reveal">
+        <div class="suite-specs">
+            <span class="suite-spec">2 En-suite Bedrooms</span>
+            <span class="suite-spec">Private Living &amp; Kitchen</span>
+            <span class="suite-spec">Garden Access</span>
+        </div>
+        <p>
+            Two en-suite bedrooms with private living space and kitchen. Located on
+            the lower ground floor, it offers complete independence and direct access
+            to the lower gardens.
+        </p>
+        <p style="margin-top: 1rem;">
+            Perfect for extended family or guests who value their own rhythm.
+        </p>
+    </div>
+</div>
+
+<!-- ═══════════ THE STUDIO ═══════════ -->
+<div class="suite-hero">
+    <div class="bg" style="background-image: url('Photos/Confirmed/1.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content"><h2>The Studio</h2></div>
+</div>
+<div class="suite-info">
+    <div class="inner reveal">
+        <div class="suite-specs">
+            <span class="suite-spec">Double &amp; Bunk Beds</span>
+            <span class="suite-spec">Kitchenette</span>
+            <span class="suite-spec">Standalone</span>
+        </div>
+        <p>
+            A standalone hideaway with double bed and bunk beds—ideal for families.
+            An architecturally beautiful space with its own kitchenette and en-suite,
+            separate from the main house.
+        </p>
+        <p style="margin-top: 1rem;">
+            Intimate, functional, and full of character.
+        </p>
+    </div>
+</div>
+
+<!-- ═══════════ THE TREEHOUSE ═══════════ -->
+<div class="suite-hero">
+    <div class="bg" style="background-image: url('Photos/Confirmed/Treehouse.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content"><h2>The Treehouse</h2></div>
+</div>
+<div class="suite-info">
+    <div class="inner reveal">
+        <div class="suite-specs">
+            <span class="suite-spec">En-suite Bedroom</span>
+            <span class="suite-spec">Elevated</span>
+            <span class="suite-spec">Hidden in the Pines</span>
+        </div>
+        <p>
+            An elevated suite hidden amongst the pines. This is not a child's plaything,
+            but a proper bedroom suite suspended in the canopy.
+        </p>
+        <p style="margin-top: 1rem; font-style: italic; color: var(--accent);">
+            Wake up amongst the branches.
+        </p>
+    </div>
+</div>
+
+<!-- ═══════════ FLOORPLAN ═══════════ -->
+<section class="floorplan-section">
+    <div class="container reveal">
+        <p class="chapter-label">Layout</p>
+        <h2 class="section-title" style="margin-bottom: 2.5rem;">Estate Floorplan</h2>
+        <img src="Photos/Confirmed/Floorplan.jpeg" alt="Estate Floorplan">
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section-dark cta-band">
+    <div class="reveal">
+        <h2 class="section-title" style="color: var(--white-90);">Find your room</h2>
+        <p class="section-text" style="color: rgba(255,255,255,0.45); margin: 0 auto 2rem; text-align: center;">
+            Every suite is yours. Choose the one that suits your rhythm.
+        </p>
+        <a href="enquire.html" class="cta-btn cta-btn-light">Enquire</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p class="footer-brand">Finca Serenity</p>
+    <p class="footer-sub">San Rafael, Ibiza</p>
+    <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="estate.html">The Estate</a>
+        <a href="suites.html">Suites</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquire.html">Enquire</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Finca Serenity. All rights reserved.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

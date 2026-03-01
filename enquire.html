@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquire | Finca Serenity</title>
+    <link rel="stylesheet" href="site/styles.css">
+    <style>
+        .enquire-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        .enquire-image {
+            background: url('Photos/Confirmed/Outdoor Dining.jpg') center / cover no-repeat;
+            min-height: 400px;
+        }
+        .enquire-form-panel {
+            background: var(--bg-paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 4rem;
+        }
+        .enquire-form {
+            width: 100%;
+            max-width: 460px;
+        }
+        .enquire-form .chapter-label {
+            margin-bottom: 0.8rem;
+        }
+        .enquire-form .section-title {
+            margin-bottom: 0.6rem;
+        }
+        .enquire-form .intro {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-sub);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .enquire-success {
+            display: none;
+            text-align: center;
+        }
+        .enquire-success.show {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        .enquire-success .check {
+            width: 56px;
+            height: 56px;
+            border: 2px solid #4A7C59;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: #4A7C59;
+            font-size: 1.6rem;
+        }
+        .enquire-success h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        .enquire-success p {
+            font-size: 1rem;
+            color: var(--text-sub);
+            line-height: 1.8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+        @media (max-width: 960px) {
+            .enquire-layout { grid-template-columns: 1fr; }
+            .enquire-image { height: 40vh; }
+            .enquire-form-panel { padding: 3rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <a href="home.html" class="nav-brand">Finca Serenity</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="estate.html">The Estate</a></li>
+        <li><a href="suites.html">Suites</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="enquire.html" class="active">Enquire</a></li>
+    </ul>
+</nav>
+
+<!-- ═══════════ ENQUIRY ═══════════ -->
+<div class="enquire-layout">
+
+    <!-- Left: Image -->
+    <div class="enquire-image"></div>
+
+    <!-- Right: Form -->
+    <div class="enquire-form-panel">
+        <div class="enquire-form" id="formWrapper">
+            <p class="chapter-label">Contact</p>
+            <h2 class="section-title">Begin a conversation</h2>
+            <p class="intro">
+                Finca Serenity is available for exclusive hire. Tell us a little about your stay
+                and we will be in touch.
+            </p>
+
+            <form id="enquiryForm" onsubmit="return handleEnquiry(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="First name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Last name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone (optional)</label>
+                    <input type="tel" id="phone" placeholder="+44 ...">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dateFrom">Preferred Dates (From)</label>
+                        <input type="date" id="dateFrom">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateTo">To</label>
+                        <input type="date" id="dateTo">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" min="1" max="14" placeholder="Up to 14">
+                </div>
+
+                <div class="form-group">
+                    <label for="occasion">Occasion</label>
+                    <select id="occasion">
+                        <option value="" disabled selected>Select an occasion</option>
+                        <option value="celebration">Celebration</option>
+                        <option value="retreat">Retreat</option>
+                        <option value="family">Family Holiday</option>
+                        <option value="corporate">Corporate</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your stay</label>
+                    <textarea id="message" placeholder="Anything we should know..."></textarea>
+                </div>
+
+                <button type="submit" class="form-btn">Submit Enquiry</button>
+            </form>
+        </div>
+
+        <!-- Success -->
+        <div class="enquire-success" id="enquirySuccess">
+            <div class="check">&#10003;</div>
+            <h3>Enquiry Received</h3>
+            <p>
+                Thank you for your interest in Finca Serenity.
+                We will review your enquiry and respond within 24 hours.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p class="footer-brand">Finca Serenity</p>
+    <p class="footer-sub">San Rafael, Ibiza</p>
+    <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="estate.html">The Estate</a>
+        <a href="suites.html">Suites</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquire.html">Enquire</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Finca Serenity. All rights reserved.</p>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+function handleEnquiry(e) {
+    e.preventDefault();
+
+    const data = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName:  document.getElementById('lastName').value.trim(),
+        email:     document.getElementById('email').value.trim(),
+        phone:     document.getElementById('phone').value.trim(),
+        dateFrom:  document.getElementById('dateFrom').value,
+        dateTo:    document.getElementById('dateTo').value,
+        guests:    document.getElementById('guests').value,
+        occasion:  document.getElementById('occasion').value,
+        message:   document.getElementById('message').value.trim(),
+        timestamp: new Date().toISOString()
+    };
+
+    // Store locally (swap for API in production)
+    const enquiries = JSON.parse(localStorage.getItem('finca_enquiries') || '[]');
+    enquiries.push(data);
+    localStorage.setItem('finca_enquiries', JSON.stringify(enquiries));
+
+    console.log('Enquiry submitted:', data);
+
+    // Show success
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('enquirySuccess').classList.add('show');
+
+    return false;
+}
+</script>
+
+</body>
+</html>

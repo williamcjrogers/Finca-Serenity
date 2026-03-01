@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Finca Serenity</title>
+    <link rel="stylesheet" href="site/styles.css">
+    <style>
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .filter-btn {
+            font-family: 'Cormorant', serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-main);
+            transition: width 0.3s;
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: var(--text-main);
+        }
+        .filter-btn.active::after {
+            width: 100%;
+        }
+        .gallery-item[data-category] {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .gallery-item.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <a href="home.html" class="nav-brand">Finca Serenity</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="estate.html">The Estate</a></li>
+        <li><a href="suites.html">Suites</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="enquire.html">Enquire</a></li>
+    </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-full" style="height: 60vh; min-height: 400px;">
+    <div class="bg" style="background-image: url('Photos/Confirmed/Pool area2.jpg')"></div>
+    <div class="overlay"></div>
+    <div class="content">
+        <p class="tagline" style="margin-bottom: 0.8rem;">Photography</p>
+        <h1>Gallery</h1>
+    </div>
+</section>
+
+<!-- ═══════════ GALLERY ═══════════ -->
+<section class="section section-pad-lg">
+    <div class="container">
+        <!-- Filters -->
+        <div class="gallery-filters reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="light">Light</button>
+            <button class="filter-btn" data-filter="dusk">Dusk</button>
+            <button class="filter-btn" data-filter="night">Night</button>
+            <button class="filter-btn" data-filter="interiors">Interiors</button>
+            <button class="filter-btn" data-filter="wellness">Wellness</button>
+        </div>
+
+        <!-- Masonry Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+
+            <!-- LIGHT -->
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/Pool Area.jpg" alt="Pool Area" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/Pool area2.jpg" alt="Pool Area" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/Outdoor Dining.jpg" alt="Outdoor Dining" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/The Estate (P1).jpg" alt="The Estate" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/Front Entrance.jpg" alt="Front Entrance" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Confirmed/Treehouse.jpg" alt="Treehouse" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Pool/charles-13 YES.jpg" alt="Pool" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="light">
+                <img src="Photos/Outdoor Seating/charles-15.jpg" alt="Outdoor Seating" loading="lazy">
+            </div>
+
+            <!-- DUSK -->
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Blue Hour/BLUE HOUR-2 yes.jpg" alt="Blue Hour" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Blue Hour/BLUE HOUR-3 yes.jpg" alt="Blue Hour" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Blue Hour/BLUE HOUR-1.jpg" alt="Blue Hour Grounds" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Blue Hour/BLUE HOUR-10.jpg" alt="Blue Hour" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Blue Hour/BLUE HOUR-11.jpg" alt="Blue Hour" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="dusk">
+                <img src="Photos/Confirmed/BLUE HOUR-8 2.jpg" alt="Blue Hour" loading="lazy">
+            </div>
+
+            <!-- NIGHT -->
+            <div class="gallery-item" data-category="night">
+                <img src="Photos/Confirmed/Nightclub Bar.jpg" alt="Nightclub Bar" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="night">
+                <img src="Photos/Confirmed/Nightclub Stage.jpg" alt="Nightclub Stage" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="night">
+                <img src="Photos/Nightclub/charles-98 Yes.jpg" alt="Nightclub" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="night">
+                <img src="Photos/Nightclub/charles-99 yes.jpg" alt="Nightclub" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="night">
+                <img src="Photos/Nightclub/charles-101 yes.jpg" alt="Nightclub" loading="lazy">
+            </div>
+
+            <!-- INTERIORS -->
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/finca-inside-out.jpg" alt="Inside Out" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Kitchen2.jpg" alt="Kitchen" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Elemental Living.jpg" alt="Elemental Living" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Suites.jpg" alt="Suites" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/En-Suite.jpg" alt="En-Suite" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Apartment Living Area.jpg" alt="Apartment" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Art & Culture.jpg" alt="Art" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Art & Culture-landscape.jpg" alt="Art Landscape" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Dining1 yes.jpg" alt="Dining" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Confirmed/Dining3.jpg" alt="Dining" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="interiors">
+                <img src="Photos/Bedroom/charles-67 yes.jpg" alt="Bedroom" loading="lazy">
+            </div>
+
+            <!-- WELLNESS -->
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Confirmed/Sauna wellness.jpg" alt="Sauna" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Confirmed/Steam Wellness.jpg" alt="Steam Room" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Gym & Sauna/Sauna.jpeg" alt="Sauna" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Gym & Sauna/Sauna2.jpeg" alt="Sauna" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Yoga/charles-22.jpg" alt="Yoga" loading="lazy">
+            </div>
+            <div class="gallery-item" data-category="wellness">
+                <img src="Photos/Yoga/charles-23.jpg" alt="Yoga" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p class="footer-brand">Finca Serenity</p>
+    <p class="footer-sub">San Rafael, Ibiza</p>
+    <div class="footer-links">
+        <a href="home.html">Home</a>
+        <a href="estate.html">The Estate</a>
+        <a href="suites.html">Suites</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquire.html">Enquire</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Finca Serenity. All rights reserved.</p>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// Lightbox
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const src = item.querySelector('img').src;
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
