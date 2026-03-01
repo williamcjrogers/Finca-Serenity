@@ -5,3 +5,5 @@ logs/
 *.pdf
 *.pdf.bz2
 ch.mp4
+.vercel
+.env*.local
