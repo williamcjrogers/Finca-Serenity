@@ -64,14 +64,132 @@
             color: var(--text-sub);
             line-height: 2;
         }
+
+        /* ── Interactive Floorplan ── */
         .floorplan-section {
             background: var(--bg-paper);
             padding: 5rem 3rem;
             text-align: center;
         }
-        .floorplan-section img {
+        .floorplan-wrap {
+            position: relative;
+            display: inline-block;
             max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
+        }
+        .floorplan-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .fp-pin {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(51,51,51,0.85);
+            border: 2px solid rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s, background 0.2s;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        .fp-pin:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+            background: var(--text-main);
+        }
+        .fp-pin span {
+            font-family: 'Cormorant', serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1;
+        }
+        .fp-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-main);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 3px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .fp-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--text-main);
+        }
+        .fp-pin:hover .fp-tooltip {
+            opacity: 1;
+        }
+        .fp-tooltip .tt-name {
+            font-family: 'Cormorant', serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-style: italic;
+            display: block;
+        }
+        .fp-tooltip .tt-detail {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-top: 0.15rem;
+            display: block;
+        }
+        /* Off-plan markers */
+        .fp-offplan {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            cursor: pointer;
+        }
+        .fp-offplan-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(245,242,233,0.95);
+            padding: 0.35rem 0.8rem;
+            border-radius: 2px;
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .fp-offplan:hover .fp-offplan-label {
+            transform: translateY(-2px);
+        }
+        .fp-offplan-label span {
+            font-family: 'Cormorant', serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--text-main);
+        }
+        .fp-offplan-label .arrow-icon {
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .fp-pin { width: 22px; height: 22px; }
+            .fp-pin span { font-size: 0.6rem; }
+            .fp-tooltip { display: none; }
+            .fp-offplan-label { padding: 0.25rem 0.5rem; }
+            .fp-offplan-label span { font-size: 0.72rem; }
         }
     </style>
 </head>
@@ -89,7 +207,6 @@
         <li><a href="home.html">Home</a></li>
         <li><a href="estate.html">The Estate</a></li>
         <li><a href="suites.html" class="active">Suites</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="enquire.html">Enquire</a></li>
     </ul>
 </nav>
@@ -121,8 +238,66 @@
     </div>
 </section>
 
+<!-- ═══════════ INTERACTIVE FLOORPLAN ═══════════ -->
+<section class="floorplan-section">
+    <div class="container reveal">
+        <p class="chapter-label">Layout</p>
+        <h2 class="section-title" style="margin-bottom: 1rem;">Estate Floorplan</h2>
+        <p class="section-text" style="color: var(--accent); margin-bottom: 2.5rem; font-size: 0.9rem;">
+            Click a room to explore
+        </p>
+        <div class="floorplan-wrap">
+            <img src="Photos/Confirmed/Floorplan.jpeg" alt="Estate Floorplan">
+
+            <!-- Lower Floor — Apartment Bedrooms -->
+            <a class="fp-pin" style="top: 9%; left: 7%;" onclick="scrollToSection('apartment')">
+                <div class="fp-tooltip"><span class="tt-name">Apartment Bedroom 1</span><span class="tt-detail">4.0 &times; 7.1 m &middot; En-suite</span></div>
+                <span>1</span>
+            </a>
+            <a class="fp-pin" style="top: 7%; left: 19%;" onclick="scrollToSection('apartment')">
+                <div class="fp-tooltip"><span class="tt-name">Apartment Bedroom 2</span><span class="tt-detail">4.3 &times; 4.5 m &middot; En-suite</span></div>
+                <span>2</span>
+            </a>
+
+            <!-- Lower Floor — Main House Lower Bedrooms -->
+            <a class="fp-pin" style="top: 5%; left: 38%;" onclick="scrollToSection('main-house')">
+                <div class="fp-tooltip"><span class="tt-name">Bedroom 3</span><span class="tt-detail">3.6 &times; 4.9 m &middot; En-suite</span></div>
+                <span>3</span>
+            </a>
+            <a class="fp-pin" style="top: 5%; left: 47%;" onclick="scrollToSection('main-house')">
+                <div class="fp-tooltip"><span class="tt-name">Bedroom 4</span><span class="tt-detail">4.3 &times; 4.9 m &middot; En-suite</span></div>
+                <span>4</span>
+            </a>
+
+            <!-- Ground Floor — Main House Bedroom -->
+            <a class="fp-pin" style="top: 43%; left: 9%;" onclick="scrollToSection('main-house')">
+                <div class="fp-tooltip"><span class="tt-name">Bedroom 5</span><span class="tt-detail">4.0 &times; 3.5 m &middot; En-suite</span></div>
+                <span>5</span>
+            </a>
+
+            <!-- Second Floor — Master Suites -->
+            <a class="fp-pin" style="top: 82%; left: 35%;" onclick="scrollToSection('main-house')">
+                <div class="fp-tooltip"><span class="tt-name">Master Bedroom</span><span class="tt-detail">4.5 &times; 4.9 m &middot; En-suite &middot; Dressing Room</span></div>
+                <span>6</span>
+            </a>
+            <a class="fp-pin" style="top: 82%; left: 60%;" onclick="scrollToSection('main-house')">
+                <div class="fp-tooltip"><span class="tt-name">Bedroom 7</span><span class="tt-detail">3.4 &times; 5.1 m &middot; En-suite &middot; Terrace</span></div>
+                <span>7</span>
+            </a>
+
+            <!-- Off-plan: Studio & Treehouse -->
+            <a class="fp-offplan" style="bottom: 2%; left: 20%;" onclick="scrollToSection('studio')">
+                <div class="fp-offplan-label"><span>The Studio</span><span class="arrow-icon">&darr;</span></div>
+            </a>
+            <a class="fp-offplan" style="bottom: 2%; left: 55%;" onclick="scrollToSection('treehouse')">
+                <div class="fp-offplan-label"><span>The Treehouse</span><span class="arrow-icon">&darr;</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- ═══════════ THE MAIN HOUSE ═══════════ -->
-<div class="suite-hero">
+<div id="main-house" class="suite-hero">
     <div class="bg" style="background-image: url('Photos/Confirmed/Suites.jpg')"></div>
     <div class="overlay"></div>
     <div class="content"><h2>The Main House</h2></div>
@@ -146,7 +321,7 @@
 </div>
 
 <!-- ═══════════ THE APARTMENT ═══════════ -->
-<div class="suite-hero">
+<div id="apartment" class="suite-hero">
     <div class="bg" style="background-image: url('Photos/Confirmed/Apartment Living Area.jpg')"></div>
     <div class="overlay"></div>
     <div class="content"><h2>The Apartment</h2></div>
@@ -170,7 +345,7 @@
 </div>
 
 <!-- ═══════════ THE STUDIO ═══════════ -->
-<div class="suite-hero">
+<div id="studio" class="suite-hero">
     <div class="bg" style="background-image: url('Photos/Confirmed/1.jpg')"></div>
     <div class="overlay"></div>
     <div class="content"><h2>The Studio</h2></div>
@@ -194,7 +369,7 @@
 </div>
 
 <!-- ═══════════ THE TREEHOUSE ═══════════ -->
-<div class="suite-hero">
+<div id="treehouse" class="suite-hero">
     <div class="bg" style="background-image: url('Photos/Confirmed/Treehouse.jpg')"></div>
     <div class="overlay"></div>
     <div class="content"><h2>The Treehouse</h2></div>
@@ -216,15 +391,6 @@
     </div>
 </div>
 
-<!-- ═══════════ FLOORPLAN ═══════════ -->
-<section class="floorplan-section">
-    <div class="container reveal">
-        <p class="chapter-label">Layout</p>
-        <h2 class="section-title" style="margin-bottom: 2.5rem;">Estate Floorplan</h2>
-        <img src="Photos/Confirmed/Floorplan.jpeg" alt="Estate Floorplan">
-    </div>
-</section>
-
 <!-- CTA -->
 <section class="section-dark cta-band">
     <div class="reveal">
@@ -244,7 +410,6 @@
         <a href="home.html">Home</a>
         <a href="estate.html">The Estate</a>
         <a href="suites.html">Suites</a>
-        <a href="gallery.html">Gallery</a>
         <a href="enquire.html">Enquire</a>
     </div>
     <p class="footer-copy">&copy; 2026 Finca Serenity. All rights reserved.</p>
@@ -258,6 +423,11 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 </script>
 
 </body>

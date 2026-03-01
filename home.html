@@ -39,127 +39,12 @@
             color: rgba(255,255,255,0.2);
         }
 
-        /* ── Services Grid ── */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .service-card {
-            background: var(--bg-paper);
-            padding: 2.2rem 2rem;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: transform 0.3s;
-        }
-        .service-card:hover {
-            transform: translateY(-3px);
-        }
-        .service-icon {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-        .service-card h4 {
-            font-family: 'Cormorant', serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-main);
-            margin-bottom: 0.8rem;
-        }
-        .service-card p {
-            font-size: 0.88rem;
-            color: var(--text-sub);
-            line-height: 1.8;
-        }
-
-        /* ── Timeline ── */
-        .timeline {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 2rem;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
-        }
-        .tl-item {
-            position: relative;
-            padding: 0 0 2.5rem 2rem;
-        }
-        .tl-item::before {
-            content: '';
-            position: absolute;
-            left: -2.3rem;
-            top: 0.35rem;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.25);
-        }
-        .tl-time {
-            display: block;
-            font-size: 0.78rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.4rem;
-            font-weight: 500;
-        }
-        .tl-item p {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.8;
-            font-style: italic;
-        }
-
-        /* ── Location Grid ── */
-        .location-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .loc-card {
-            padding: 2rem;
-            background: var(--bg-paper);
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        .loc-card h4 {
-            font-family: 'Cormorant', serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-main);
-            margin-bottom: 0.3rem;
-        }
-        .loc-dist {
-            font-size: 0.78rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-        }
-        .loc-card p:last-child {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            line-height: 1.7;
-        }
-
         /* ── Responsive ── */
         @media (max-width: 960px) {
             .amenities-grid { grid-template-columns: repeat(2, 1fr); }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .location-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
             .amenities-grid { grid-template-columns: 1fr; }
-            .services-grid { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -178,7 +63,6 @@
         <li><a href="home.html" class="active">Home</a></li>
         <li><a href="estate.html">The Estate</a></li>
         <li><a href="suites.html">Suites</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="enquire.html">Enquire</a></li>
     </ul>
 </nav>
@@ -197,89 +81,6 @@
     <div class="scroll-hint">
         <span>Discover</span>
         <div class="arrow"></div>
-    </div>
-</section>
-
-<!-- ═══════════ THE PILLARS ═══════════ -->
-<section class="section-dark section-pad-lg">
-    <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <p class="chapter-label">Explore</p>
-            <h2 class="section-title">Three worlds, one estate</h2>
-        </div>
-        <div class="cards reveal">
-            <a href="estate.html#sanctuary" class="card">
-                <div class="card-bg" style="background-image: url('Photos/Confirmed/Elemental Living.jpg')"></div>
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p class="card-label">Chapter I</p>
-                    <h3 class="card-title">The Sanctuary</h3>
-                </div>
-            </a>
-            <a href="estate.html#life" class="card">
-                <div class="card-bg" style="background-image: url('Photos/Confirmed/Pool Area.jpg')"></div>
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p class="card-label">Chapter II</p>
-                    <h3 class="card-title">The Life</h3>
-                </div>
-            </a>
-            <a href="estate.html#night" class="card">
-                <div class="card-bg" style="background-image: url('Photos/Confirmed/Nightclub Bar.jpg')"></div>
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p class="card-label">Chapter III</p>
-                    <h3 class="card-title">The Night</h3>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════ THE PREMISE ═══════════ -->
-<section class="section">
-    <div class="split-row">
-        <div class="split-text">
-            <div class="reveal">
-                <p class="chapter-label">The Estate</p>
-                <h2 class="section-title">Where the outside world drops away</h2>
-                <p class="section-text">
-                    Hidden within terraced gardens and ancient pines, where Phoenicians first cultivated the valley,
-                    Finca Serenity is a home built for a life well lived.
-                </p>
-                <p class="section-text" style="margin-top: 1rem;">
-                    One filled with people, long lunches, games on the lawn, music in the evenings,
-                    and quiet moments of calm. The house has the warmth of a traditional Ibicencan finca,
-                    with the space and privacy to do whatever you please.
-                </p>
-                <p class="section-text" style="margin-top: 1.2rem; font-style: italic; color: var(--accent);">
-                    Stay, host, move, rest — and never feel the need to leave.
-                </p>
-            </div>
-        </div>
-        <div class="split-img" style="background-image: url('Photos/Confirmed/finca-inside-out.jpg')"></div>
-    </div>
-</section>
-
-<!-- ═══════════ AT A GLANCE ═══════════ -->
-<section class="section section-pad-lg">
-    <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <p class="chapter-label">At a Glance</p>
-            <h2 class="section-title">The estate in numbers</h2>
-        </div>
-        <div class="stats-grid reveal">
-            <div class="stat"><h3>7</h3><p>En-suite Bedrooms</p></div>
-            <div class="stat"><h3>25,000</h3><p>Sq. Metres of Estate</p></div>
-            <div class="stat"><h3>14</h3><p>Guests</p></div>
-            <div class="stat"><h3>1</h3><p>Private Nightclub</p></div>
-        </div>
-        <div class="stats-grid reveal" style="margin-top: 2.5rem;">
-            <div class="stat"><h3>&infin;</h3><p>Pool &amp; Wellness</p></div>
-            <div class="stat"><h3>4</h3><p>Separate Living Spaces</p></div>
-            <div class="stat"><h3>1</h3><p>Treehouse Suite</p></div>
-            <div class="stat"><h3>365</h3><p>Days of Sunshine</p></div>
-        </div>
     </div>
 </section>
 
@@ -341,126 +142,6 @@
     </div>
 </section>
 
-<!-- ═══════════ SERVICES FOR HIRE ═══════════ -->
-<section class="section section-pad-lg">
-    <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <p class="chapter-label">Concierge</p>
-            <h2 class="section-title">Services available on request</h2>
-            <p class="section-text" style="max-width: 600px; margin: 1rem auto 0; text-align: center;">
-                Our concierge team can arrange everything before you arrive. Just ask.
-            </p>
-        </div>
-        <div class="services-grid reveal">
-            <div class="service-card">
-                <div class="service-icon">&#9733;</div>
-                <h4>Private Chef</h4>
-                <p>Personal chef for the duration of your stay. Menus tailored to your group.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#9835;</div>
-                <h4>DJ &amp; Live Music</h4>
-                <p>Resident DJs, live bands, or acoustic sets. The stage and sound system are ready.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#9752;</div>
-                <h4>Yoga &amp; Wellness</h4>
-                <p>Private yoga instructors, massage therapists, and breathwork sessions on the deck.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#9978;</div>
-                <h4>Boat Charter</h4>
-                <p>Day charters to Formentera, sunset sails, or private yacht hire.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#127860;</div>
-                <h4>Catering &amp; Events</h4>
-                <p>From intimate dinners to large celebrations. Full event planning available.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#128663;</div>
-                <h4>Transport</h4>
-                <p>Airport transfers, luxury car hire, and driver-on-call throughout your stay.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════ A DAY AT FINCA SERENITY ═══════════ -->
-<section class="section-dark section-pad-lg">
-    <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <p class="chapter-label">A Day at Finca Serenity</p>
-            <h2 class="section-title">From sunrise to stars</h2>
-        </div>
-        <div class="timeline reveal">
-            <div class="tl-item"><span class="tl-time">8:00 AM</span><p>Wake to sunlight and the scent of pine. Step onto the terrace with an espresso as the island slowly stirs.</p></div>
-            <div class="tl-item"><span class="tl-time">10:00 AM</span><p>Rally the family for a pickleball match, followed by a cool dip. The children have already found the treehouse.</p></div>
-            <div class="tl-item"><span class="tl-time">1:00 PM</span><p>Lunch in the pool pergola. Grilled catch of the day, salads from the garden, local ros&eacute;. Nobody checks the time.</p></div>
-            <div class="tl-item"><span class="tl-time">4:00 PM</span><p>A lazy afternoon. Some retreat to the pool. Others wander the orchards. The sauna is there for those who want it.</p></div>
-            <div class="tl-item"><span class="tl-time">7:00 PM</span><p>Sunset ritual. The sky blushes pink, then gold. The bay of San Antonio twinkles in the distance.</p></div>
-            <div class="tl-item"><span class="tl-time">10:00 PM</span><p>Dinner outside — platters, candles, bare feet on warm stone. Then the club. Someone opens the bar.</p></div>
-            <div class="tl-item"><span class="tl-time">Midnight</span><p>The Celestron telescope is brought out. Jupiter is visible. Tomorrow can be as full or as free as you choose.</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════ IMAGE BAND ═══════════ -->
-<div class="img-band" style="background-image: url('Photos/Blue Hour/BLUE HOUR-3 yes.jpg')">
-    <p class="caption">Blue Hour</p>
-</div>
-
-<!-- ═══════════ LOCATION ═══════════ -->
-<section class="section section-pad-lg">
-    <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <p class="chapter-label">Location</p>
-            <h2 class="section-title">The heart of the island</h2>
-            <p class="section-text" style="max-width: 620px; margin: 1rem auto 0; text-align: center;">
-                Finca Serenity sits in the hills above San Rafael, in the quiet centre of Ibiza.
-                Close enough to everything, far enough from everyone.
-            </p>
-        </div>
-        <div class="location-grid reveal">
-            <div class="loc-card">
-                <h4>San Rafael</h4>
-                <p class="loc-dist">Village &middot; 5 min</p>
-                <p>Cafes, ceramics workshops, and the authentic Ibiza before the crowds.</p>
-            </div>
-            <div class="loc-card">
-                <h4>Santa Gertrudis</h4>
-                <p class="loc-dist">Village &middot; 10 min</p>
-                <p>The island's culinary heart. Galleries, boutiques, and the best restaurants on the island.</p>
-            </div>
-            <div class="loc-card">
-                <h4>Ibiza Town</h4>
-                <p class="loc-dist">City &middot; 15 min</p>
-                <p>Dalt Vila, the harbour, world-class dining, and nightlife.</p>
-            </div>
-            <div class="loc-card">
-                <h4>Ibiza Airport</h4>
-                <p class="loc-dist">IBZ &middot; 20 min</p>
-                <p>Direct flights from all major European cities. Private jet terminal available.</p>
-            </div>
-            <div class="loc-card">
-                <h4>San Antonio</h4>
-                <p class="loc-dist">West Coast &middot; 15 min</p>
-                <p>Sunset strip, Caf&eacute; del Mar, and the western coastline beaches.</p>
-            </div>
-            <div class="loc-card">
-                <h4>Nearest Beaches</h4>
-                <p class="loc-dist">Coastline &middot; 10–20 min</p>
-                <p>Cala Salada, Cala Bassa, Cala Conta — all within easy reach.</p>
-            </div>
-        </div>
-        <div class="reveal" style="text-align: center; margin-top: 3rem;">
-            <p class="section-text" style="font-size: 0.92rem; color: var(--accent); letter-spacing: 0.08em;">
-                San Rafael, Ibiza, 07816, Spain
-            </p>
-        </div>
-    </div>
-</section>
-
 <!-- ═══════════ CTA ═══════════ -->
 <section class="section-dark cta-band">
     <div class="reveal">
@@ -484,7 +165,6 @@
         <a href="home.html">Home</a>
         <a href="estate.html">The Estate</a>
         <a href="suites.html">Suites</a>
-        <a href="gallery.html">Gallery</a>
         <a href="enquire.html">Enquire</a>
     </div>
     <p class="footer-copy">&copy; 2026 Finca Serenity. All rights reserved.</p>
