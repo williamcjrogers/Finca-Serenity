@@ -81,6 +81,27 @@
             width: 100%;
             height: auto;
             display: block;
+            background: #ece8de;
+            padding: 1rem;
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+        /* Lightbox */
+        .fp-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .fp-lightbox.active { display: flex; }
+        .fp-lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
         }
         .fp-pin {
             position: absolute;
@@ -244,10 +265,7 @@
 <section class="floorplan-section">
     <div class="container reveal">
         <p class="chapter-label">Layout</p>
-        <h2 class="section-title" style="margin-bottom: 1rem;">Estate Floorplan</h2>
-        <p class="section-text" style="color: var(--accent); margin-bottom: 2.5rem; font-size: 0.9rem;">
-            Click a room to explore
-        </p>
+        <h2 class="section-title" style="margin-bottom: 2.5rem;">Estate Floorplan</h2>
         <div class="floorplan-wrap">
             <img src="Photos/Confirmed/Floorplan.jpeg" alt="Estate Floorplan">
 
@@ -298,6 +316,11 @@
     </div>
 </section>
 
+<!-- Lightbox -->
+<div class="fp-lightbox" id="fpLightbox" onclick="this.classList.remove('active')">
+    <img src="Photos/Confirmed/Floorplan.jpeg" alt="Estate Floorplan">
+</div>
+
 <!-- Footer -->
 <footer class="site-footer">
     <p class="footer-brand">Finca Serenity</p>
@@ -324,6 +347,11 @@ function scrollToSection(id) {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// Floorplan lightbox
+document.querySelector('.floorplan-wrap img').addEventListener('click', () => {
+    document.getElementById('fpLightbox').classList.add('active');
+});
 </script>
 
 </body>
