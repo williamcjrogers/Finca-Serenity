@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Finca Serenity | San Rafael, Ibiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-paper: #F5F2E9;
+            /* Old school beige paper */
+            --text-main: #333333;
+            /* Dark Charcoal */
+            --text-sub: #5A5A5A;
+            --accent: #8C8C8C;
+        }
+
+        body {
+            font-family: 'Cormorant', serif;
+            background: #111;
+            font-weight: 300;
+            color: var(--text-main);
+        }
+
+        .page {
+            width: 297mm;
+            height: 210mm;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            background-color: var(--bg-paper);
+        }
+
+        /* Grain Effect Overlay */
+        .page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+            opacity: 0.14;
+            /* Increased visibility per user request */
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: multiply;
+        }
+
+        .page>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Ensure content sits above grain */
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        .bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Cover */
+        .cover {
+            background: #111;
+        }
+
+        .cover .overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 2;
+        }
+
+        .cover .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .cover h1 {
+            font-size: 42pt;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            line-height: 1.4;
+            margin-bottom: 8mm;
+            color: rgba(255,255,255,0.92);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            text-indent: 0.4em;
+        }
+
+        .cover .line {
+            width: 35mm;
+            height: 0.5px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            margin: 0 auto 6mm;
+        }
+
+        .cover .sub {
+            font-size: 11pt;
+            font-style: italic;
+            letter-spacing: 0.25em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0;
+        }
+
+        /* Category Header */
+        .category {
+            font-size: 15pt;
+            /* Larger */
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: #333;
+            /* Darker/Standalone */
+            margin-bottom: 8mm;
+            /* Increased spacing between header and title */
+            font-weight: 600;
+            /* Bolder */
+            display: block;
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6), 0px -1px 0px rgba(0, 0, 0, 0.15);
+            /* Embossed/Pressed look */
+        }
+
+        /* Split layout */
+        .split {
+            display: flex;
+        }
+
+        .split .text-panel {
+            width: 30%;
+            padding: 10mm 18mm 20mm 18mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: transparent;
+        }
+
+        .split .image-panel {
+            width: 70%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .split.reverse .text-panel {
+            order: 2;
+        }
+
+        .split.reverse .image-panel {
+            order: 1;
+        }
+
+        .split h2 {
+            font-size: 42pt;
+            /* Significantly larger for prestige */
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 8mm;
+            /* Removed negative margins for strict alignment */
+            z-index: 3;
+            line-height: 1.1;
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6), 0px -1px 0px rgba(0, 0, 0, 0.15);
+            /* Embossed effect */
+        }
+
+        .split.reverse h2 {
+            margin-right: 0;
+            margin-left: 0;
+            /* Reset margins */
+        }
+
+        /* Mirror for reverse */
+
+        .split p {
+            font-size: 11pt;
+            color: var(--text-sub);
+            line-height: 2.1;
+            margin-bottom: 5mm;
+            max-width: 100%;
+        }
+
+        .split .specs {
+            font-size: 10pt;
+            color: var(--accent);
+            font-style: italic;
+            margin-top: 6mm;
+        }
+
+        /* Dark split */
+        .split.dark .text-panel {
+            background: #1a1a1a;
+        }
+
+        .split.dark h2 {
+            color: #FAF8F5;
+        }
+
+        .split.dark p {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Dual Image Panel Support */
+        .image-panel.dual {
+            display: flex;
+            flex-direction: column;
+            background-image: none !important;
+        }
+
+        .image-panel.dual .half {
+            flex: 1;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Rhythm page */
+        .rhythm-page {
+            background-color: #F5F2E9;
+            color: #2A2A2A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rhythm-inner {
+            display: flex;
+            gap: 20mm;
+            max-width: 250mm;
+            align-items: center;
+        }
+
+        .rhythm-left {
+            flex: 0 0 60mm;
+            text-align: right;
+            padding-right: 12mm;
+            border-right: 0.5px solid rgba(0,0,0,0.12);
+        }
+
+        .rhythm-left h2 {
+            font-size: 36pt;
+            font-weight: 300;
+            font-style: italic;
+            color: #2A2A2A;
+            line-height: 1.2;
+            margin-bottom: 6mm;
+        }
+
+        .rhythm-left .tagline {
+            font-size: 9.5pt;
+            font-style: italic;
+            color: #8C8C8C;
+            line-height: 1.8;
+        }
+
+        .rhythm-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5mm;
+        }
+
+        .rhythm-moment {
+            display: flex;
+            align-items: baseline;
+            gap: 5mm;
+        }
+
+        .rhythm-moment .when {
+            flex: 0 0 24mm;
+            font-size: 8.5pt;
+            color: #8C8C8C;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .rhythm-moment .what {
+            flex: 1;
+            font-size: 10.5pt;
+            color: #4A4A4A;
+            line-height: 1.7;
+        }
+
+        /* We Love page */
+        .we-love {
+            background-color: #F5F2E9;
+            /* Switch to paper background */
+            color: #2A2A2A;
+            /* Dark text */
+        }
+
+        .we-love::before {
+            /* Disable grain overlay so photo stays sharp */
+            display: none;
+        }
+
+        .we-love .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 30%;
+            padding: 10mm 18mm 20mm 18mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .we-love .image-panel {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 70%;
+            background-size: cover;
+            background-position: center 40%;
+        }
+
+        .we-love h2 {
+            font-size: 20pt;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 6mm;
+            color: #2A2A2A;
+            line-height: 1.4;
+        }
+
+        .we-love ul {
+            list-style: none;
+            font-size: 9.5pt;
+            line-height: 1.9;
+            color: #4A4A4A;
+        }
+
+        .we-love li {
+            position: relative;
+            padding-left: 0;
+            margin-bottom: 0.5mm;
+        }
+
+        .we-love .quote {
+            font-size: 9pt;
+            font-style: italic;
+            color: #8C8C8C;
+            border-left: 1px solid #CCC;
+            padding-left: 4mm;
+            margin-top: 6mm;
+        }
+
+        /* At a Glance */
+        .glance-page {
+            background-color: #F5F2E9;
+            color: #2A2A2A;
+            padding: 18mm 45mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .glance-page h2 {
+            font-size: 36pt;
+            font-weight: 300;
+            font-style: italic;
+            color: #2A2A2A;
+            text-align: center;
+            margin-bottom: 12mm;
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6), 0px -1px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .glance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6mm 30mm;
+            max-width: 245mm;
+            margin: 0 auto;
+        }
+
+        .glance-item {
+            font-size: 12pt;
+            color: #4A4A4A;
+            line-height: 1.7;
+            padding-bottom: 4.5mm;
+            border-bottom: 0.5px solid rgba(0,0,0,0.08);
+        }
+
+        .glance-item:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .glance-item strong {
+            color: #2A2A2A;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 2mm;
+            font-size: 10.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Back cover */
+        .back-cover {
+            background: var(--bg-paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-cover::before {
+            /* Ensure grain here too */
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+            opacity: 0.14;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: multiply;
+        }
+
+        .back-cover .logo {
+            font-size: 28pt;
+            font-style: italic;
+            color: var(--text-main);
+            letter-spacing: 0.2em;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            line-height: 2.2;
+        }
+
+        .back-cover .logo span {
+            display: block;
+            font-size: 12pt;
+            letter-spacing: 0.15em;
+            opacity: 0.4;
+            font-style: italic;
+        }
+
+        .back-cover .logo .qr {
+            display: block;
+            width: 24mm;
+            height: 24mm;
+            margin: 5mm auto 0;
+            opacity: 0.9;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .split h2 {
+                margin-right: 0;
+                margin-left: 0;
+            }
+
+            /* Reset negative margins for safer print */
+        }
+
+        @media screen {
+            body {
+                padding: 15px;
+                background: #333;
+            }
+
+            .page {
+                margin: 15px auto;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. COVER -->
+    <div class="page cover">
+        <div class="bg" style="background-image: url('finca-estate-hero.jpg');"></div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>FINCA<br>SERENITY</h1>
+            <div class="line"></div>
+            <div class="sub">San Rafael, Ibiza</div>
+        </div>
+    </div>
+
+    <!-- 2. The Arrival -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <div class="category">I. The Sanctuary</div>
+            <h2>The Arrival</h2>
+            <p>Crossing the bridge over the water garden, the pace of the outside world drops away.</p>
+            <p>Ancient stone, quiet water, and a home grounded in simplicity. It is an entrance that doesn't demand
+                attention, but offers immediate, absolute calm.</p>
+            <p style="font-style: italic;">Where the outside world ends and yours begins.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-entrance.jpg');"></div>
+    </div>
+
+    <!-- 3. Inside & Out -->
+    <div class="page split">
+        <div class="text-panel">
+            <h2>Inside & Out</h2>
+            <p>At Finca Serenity, the boundaries between the home and the island simply fall away.</p>
+            <p>Floor-to-ceiling doors remain open, pulling the Mediterranean light and the scent of pine directly into
+                the rooms. The home is designed to gather people — generously, without effort.</p>
+            <p style="font-style: italic;">Understated in every detail.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-inside-out.jpg');"></div>
+    </div>
+
+    <!-- 4. The Heart of the Home -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Heart of the Home</h2>
+            <p>The farmhouse kitchen centres around a tactile sage island, designed for slow mornings with coffee and
+                open-ended evenings.</p>
+            <p>The walk-in fridge and pantry are stocked before you arrive. Whether you gather to cook or leave it entirely to
+                your private chef, this is where the day begins and where it always returns.</p>
+            <p style="font-style: italic;">Where mornings begin and evenings refuse to end.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-kitchen-confirmed.jpg');"></div>
+    </div>
+
+    <!-- 5. Finca to Table -->
+    <div class="page split">
+        <div class="text-panel">
+            <h2>Finca to Table</h2>
+            <p>The garden gives quietly and generously. Rosemary pulled by hand. Tomatoes still warm from the afternoon sun. Lemons from the grove, split open at the table.</p>
+            <p>There is something deeply grounding about a meal that begins where you are standing. Whether your private chef takes the lead or you wander the beds yourself, the distance from soil to plate is measured in footsteps.</p>
+            <p style="font-style: italic;">Grown here. Eaten here.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-farm-to-table.jpg');"></div>
+    </div>
+
+    <!-- 6. Elemental Living -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>Elemental Living</h2>
+            <p>The truest luxury is space, silence, and a connection to nature.</p>
+            <p>A hand-carved stone bathtub sits quietly on the upper terrace — an invitation to bathe under the Ibiza sky.
+                The home is defined by these quiet, unexpected luxuries.</p>
+            <p style="font-style: italic;">Nothing between you and the sky.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-elemental.jpg');"></div>
+    </div>
+
+    <!-- 7. Dining -->
+    <div class="page split">
+        <div class="text-panel">
+            <div class="category">II. The Life</div>
+            <h2>Dining</h2>
+            <p>Feasts that span hours, set against the backdrop of the olive groves. Whether it's a sunrise breakfast on
+                the terrace or a candlelit dinner under the pergola, dining here is an act of connection.</p>
+            <p>Fresh, local ingredients, prepared with care, and served in the open air where time seems to move
+                differently.</p>
+            <p style="font-style: italic;">The table is set. The rest writes itself.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-dining-pergola.jpg');"></div>
+    </div>
+
+    <!-- 8. Outdoor Dining -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>Al Fresco</h2>
+            <p>Every meal finds its own setting.</p>
+            <p>A long table beneath the pergola for evening feasts. The stone terrace for lazy lunches. The olive grove
+                for a blanket and a bottle of something cold. The kitchen garden for those who want to pick before they plate.</p>
+            <p style="font-style: italic;">No walls. No rules. No rush.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-outdoor-dining.jpg');"></div>
+    </div>
+
+    <!-- 8. Art & Culture -->
+    <div class="page split">
+        <div class="text-panel">
+            <h2>Art & Culture</h2>
+            <p>Walls change with the seasons.</p>
+            <p>Finca Serenity is curated in partnership with Corinthian Contemporary Art — an internationally recognised
+                foundation that rotates original works throughout the home. Each stay reveals a new collection.</p>
+            <p style="font-style: italic;">The walls have something to say.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('Photos/Confirmed/Art & Culture-landscape.jpg');"></div>
+    </div>
+
+    <!-- 9. The Pool -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Pool</h2>
+            <p>The pool sits at the heart of the estate — designed for leisurely dips amid birdsong, not laps.</p>
+            <p>Pink loungers line the stone deck. A shaded cabana offers refuge from the afternoon sun. Staff bring
+                drinks; nobody expects you anywhere.</p>
+            <p style="font-style: italic;">Be still, and the day finds you.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-pool-confirmed-1.jpg');"></div>
+    </div>
+
+    <!-- 10. Still Water -->
+    <div class="page split">
+        <div class="text-panel">
+            <h2>Still Water</h2>
+            <p>The day arranges itself around the water. A game of croquet on the lower lawn. The cricket net for those
+                who need to bowl a few overs. The pickleball court for something more competitive.</p>
+            <p>Or simply stay exactly where you are. The cabana is shaded, the drinks are cold, and the afternoon
+                stretches on.</p>
+            <p style="font-style: italic;">Nowhere to be. Nothing to prove.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-pool-confirmed-2.jpg');"></div>
+    </div>
+
+    <!-- 11. The Grounds -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Grounds</h2>
+            <p>Beyond the pool, 25,000 square metres of terraced gardens, olive groves and pine forest unfold across the hillside.</p>
+            <p>A treehouse hidden in the pines with its own romantic ensuite. Two secluded yurts for those drawn to sleep
+                beneath the stars — or equally suited as private staff quarters, set apart from the main house.</p>
+            <p style="font-style: italic;">Twenty-five thousand reasons to wander.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-estate-hero.jpg');"></div>
+    </div>
+
+    <!-- 12. After Dark -->
+    <div class="page split">
+        <div class="text-panel">
+            <div class="category">III. The Night</div>
+            <h2>After Dark</h2>
+            <p>Beneath a ceiling of stars, your own private club.</p>
+            <p>Full bar. Professional stage. Sound system throughout. Bring your own DJ. Hire a band. Or simply turn the
+                lights down, open the bar, and let the evening find its own rhythm.</p>
+            <p style="font-style: italic;">Come for a drink. Stay for the dawn.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-bar.jpg');"></div>
+    </div>
+
+    <!-- 13. The Stage -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Stage</h2>
+            <p>The stage is ready. The guitars are waiting. The only question is who plays first.</p>
+            <p style="font-style: italic;">Pick up a guitar. Or just listen.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-stage-confirmed.jpg');"></div>
+    </div>
+
+    <!-- 14. Wellness -->
+    <div class="page split">
+        <div class="text-panel">
+            <div class="category">IV. The Retreat</div>
+            <h2>Wellness</h2>
+            <p>Sauna. Steam room. Ice plunge. A wellness circuit designed for recovery — or simply for the ritual of it.</p>
+            <p>A fully equipped gym. A yoga deck overlooking the groves. Every path to stillness, in one place.</p>
+            <p style="font-style: italic;">Slow down, and the body remembers.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-wellness-sauna.jpg');"></div>
+    </div>
+
+    <!-- 15. The Steam Room -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Steam Room</h2>
+            <p>Warmth built into the walls. Step from the cold plunge into a cocoon of heat and handmade mosaic — and let the island fall away entirely.</p>
+            <p style="font-style: italic;">Let the heat do the thinking.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-wellness-steam.jpg');"></div>
+    </div>
+
+    <!-- 16. Places to Rest -->
+    <div class="page split">
+        <div class="text-panel">
+            <div class="category">V. Places to Rest</div>
+            <h2>The Bedrooms</h2>
+            <p>Seven en-suite bedrooms, a private apartment with its own kitchen and living space, and a standalone studio — each with its
+                own character, all sharing the same quiet comfort.</p>
+            <p>High beamed ceilings, cool stone floors, and French doors that open to the sound of the cicadas.
+                A place of retreat, where the thickness of the walls keeps the midday heat at bay.</p>
+            <p style="font-style: italic;">Sleep deeply. Wake slowly.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-suites-confirmed.jpg');"></div>
+    </div>
+
+    <!-- 17. Quiet Details -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>Quiet Details</h2>
+            <p>Each bedroom opens to its own private bathroom — cool stone, natural light, and the unhurried feeling of
+                a home that has thought of everything.</p>
+            <p style="font-style: italic;">Luxury lives in the things left unsaid.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-ensuite.jpg');"></div>
+    </div>
+
+    <!-- 18. The Apartment -->
+    <div class="page split">
+        <div class="text-panel">
+            <h2>The Apartment</h2>
+            <p>A self-contained retreat on the lower ground floor — two en-suite bedrooms, its own living space and kitchen,
+                with direct access to the gardens below.</p>
+            <p>Complete independence for extended family, older children, or those who simply prefer their own rhythm.</p>
+            <p style="font-style: italic;">A home within the home.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-apartment-confirmed.jpg');"></div>
+    </div>
+
+    <!-- 19. The Hideaways -->
+    <div class="page split reverse">
+        <div class="text-panel">
+            <h2>The Hideaways</h2>
+            <p>Secret spaces to escape the world.</p>
+            <p>The Treehouse, suspended in the pines for a night amongst the branches. The Bodega, stocked and waiting
+                for late-night conversations.</p>
+            <p style="font-style: italic;">A place to lose yourself, and find yourself again.</p>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-treehouse-confirmed.jpg');"></div>
+    </div>
+
+    <!-- 20. The Rhythm of the Day -->
+    <div class="page rhythm-page">
+        <div class="rhythm-inner">
+            <div class="rhythm-left">
+                <h2>The Rhythm<br>of a Day</h2>
+                <div class="tagline">No itinerary.<br>Just possibility.</div>
+            </div>
+            <div class="rhythm-right">
+                <div class="rhythm-moment">
+                    <div class="when">Dawn</div>
+                    <div class="what">Sunlight through the shutters. Espresso on the terrace. The island stirs beneath you.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Morning</div>
+                    <div class="what">A pickleball rally on the court. A cool dip. The children have already found the treehouse.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Midday</div>
+                    <div class="what">Lunch under the pergola — grilled catch of the day, salads pulled from the garden, local rosé. Nobody checks the time.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Afternoon</div>
+                    <div class="what">Some retreat to the pool. Others wander the orchards. The sauna is warm. The hammock is waiting.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Dusk</div>
+                    <div class="what">The sky turns pink, then gold. The bay of San Antonio glimmers in the distance. No one moves.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Evening</div>
+                    <div class="what">Dinner outside — platters, candles, bare feet on warm stone. Someone opens the bar. The stage is set.</div>
+                </div>
+                <div class="rhythm-moment">
+                    <div class="when">Late</div>
+                    <div class="what">The telescope comes out. Jupiter, the rings of Saturn, the Sea of Tranquility. Tomorrow writes itself.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 21. We Love -->
+    <div class="page we-love">
+        <div class="content">
+            <h2>We love that Finca Serenity is a world entirely of your making.</h2>
+            <ul>
+                <li>The club. The bar. The stage. The ceiling of stars.</li>
+                <li>The treehouse, hidden at the edge of the estate.</li>
+                <li>The telescope — pointed at the clearest sky in the Mediterranean.</li>
+                <li>The bodega. The humidor. Stocked and waiting.</li>
+                <li>The quiet certainty that everything you could want is already here.</li>
+            </ul>
+            <div class="quote">
+                "Time passes. Listen. Time passes."<br>
+                <span style="opacity: 0.6;">— Dylan Thomas</span>
+            </div>
+        </div>
+        <div class="image-panel" style="background-image: url('finca-we-love.jpg');"></div>
+    </div>
+
+    <!-- 22. At a Glance -->
+    <div class="page glance-page">
+        <h2>At a Glance</h2>
+        <div class="glance-grid">
+            <div class="glance-item"><strong>Capacity:</strong> 14–16 guests | 7 en-suite bedrooms | Staff
+                quarters on request</div>
+            <div class="glance-item"><strong>Staff:</strong> Villa manager, daily housekeeping. Private chef on request.</div>
+            <div class="glance-item"><strong>Wellness:</strong> Sauna, steam room, ice plunge, yoga deck</div>
+            <div class="glance-item"><strong>Recreation:</strong> Pool, pickleball, croquet, badminton, cricket net,
+                treehouse, yurts</div>
+            <div class="glance-item"><strong>Entertaining:</strong> Private club, full bar, stage, sound system</div>
+            <div class="glance-item"><strong>Art:</strong> Rotating collection in partnership with Corinthian Contemporary Art</div>
+            <div class="glance-item"><strong>Details:</strong> Bodega, humidor, Celestron telescope</div>
+            <div class="glance-item"><strong>Estate:</strong> 25,000 sq. m of terraced gardens, olive groves and pine forest</div>
+            <div class="glance-item"><strong>Location:</strong> 10 min Santa Gertrudis | 15 min Ibiza Town | 20 min
+                Airport</div>
+        </div>
+    </div>
+
+    <!-- 23. Back Cover -->
+    <div class="page back-cover">
+        <div class="logo">Finca Serenity<span>Further details available, upon request.</span><span>finca-serenity.com</span><img class="qr" src="finca-serenity-qr.png"
+                alt="QR code linking to finca-serenity.com"></div>
+    </div>
+
+</body>
+
+</html>
