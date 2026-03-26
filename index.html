@@ -606,6 +606,7 @@
     <script>
         // ── CONFIG ──
         const ADMIN_CODE = 'admin';
+        const ACCESS_CODES = ['BHBXFS006'];
 
         // ── REQUESTS STORAGE (localStorage) ──
         function getRequests() {
@@ -642,6 +643,13 @@
             if (code === ADMIN_CODE) {
                 msg.textContent = '';
                 showAdmin();
+                return false;
+            }
+
+            // Check hardcoded access codes
+            if (ACCESS_CODES.includes(code.toUpperCase())) {
+                msg.textContent = '';
+                showSuccess('guest');
                 return false;
             }
 
